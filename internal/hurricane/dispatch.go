@@ -11,6 +11,8 @@ package hurricane // import "github.com/solnx/hurricane/internal/hurricane"
 import (
 	"runtime"
 
+	"math/rand"
+
 	"github.com/mjolnir42/erebos"
 	"github.com/solnx/legacy"
 )
