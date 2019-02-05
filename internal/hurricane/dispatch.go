@@ -26,7 +26,12 @@ func Dispatch(msg erebos.Transport) error {
 	}
 	msg.HostID = hostID
 
-	Handlers[hostID%runtime.NumCPU()].InputChannel() <- &msg
+	if msg.HostID == -1 {
+		//Use random handler
+		Handlers[rand.Int()%runtime.NumCPU()].InputChannel() <- &msg
+	} else {
+		Handlers[hostID%runtime.NumCPU()].InputChannel() <- &msg
+	}
 	return nil
 }
 
